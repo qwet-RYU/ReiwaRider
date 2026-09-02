@@ -1,0 +1,503 @@
+
+/* ============ FONTS ============ */
+@font-face {
+  font-family: "Pusab";
+  src: url("font/8-bit-pusab.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gamer";
+  src: url("font/Gamer.ttf") format("truetype");
+  font-display: swap;
+}
+
+/* ============ BASE ============ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.vote-page {
+  --geats-a: #ffffff;
+  --geats-b: #e32226;
+  --gotchard-a: #4fc8f5;
+  --gotchard-b: #c2571a;
+  --gavv-a: #ffd21f;
+  --gavv-b: #7c3aed;
+  --zeztz-a: #e33a2e;
+  --zeztz-b: #14532d;
+
+  min-height: 100vh;
+  font-family: "Gamer", "Segoe UI", sans-serif;
+  color: #ffffff;
+  padding: 48px 16px 64px;
+  background: linear-gradient(
+    120deg,
+    var(--geats-b),
+    var(--gotchard-a),
+    var(--gotchard-b),
+    var(--gavv-b),
+    var(--gavv-a),
+    var(--zeztz-a),
+    var(--zeztz-b),
+    var(--geats-b)
+  );
+  background-size: 600% 600%;
+  animation: bg-slide 30s ease infinite;
+  background-attachment: fixed;
+}
+
+@keyframes bg-slide {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============ HEADER ============ */
+.vote-header { text-align: center; margin-bottom: 40px; }
+
+.vote-title {
+  font-family: "Pusab", monospace;
+  font-size: clamp(1.3rem, 4.5vw, 2.6rem);
+  line-height: 1.4;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow:
+    0 4px 0 rgba(0, 0, 0, 0.45),
+    0 0 24px rgba(255, 255, 255, 0.35);
+}
+
+.vote-subtitle {
+  margin-top: 14px;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ============ GRID ============ */
+.vote-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ============ CARD ============ */
+.rider-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* moving gradient border on hover */
+.rider-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 4px;
+  background: conic-gradient(
+    from var(--border-angle),
+    var(--c1),
+    var(--c2),
+    transparent 45%,
+    var(--c1),
+    var(--c2),
+    transparent 85%,
+    var(--c1)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.rider-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.rider-card:hover::before {
+  opacity: 1;
+  animation: border-spin 2.5s linear infinite;
+}
+
+@keyframes border-spin {
+  to { --border-angle: 360deg; }
+}
+
+.rider-card--geats    { --c1: var(--geats-a);    --c2: var(--geats-b); }
+.rider-card--gotchard { --c1: var(--gotchard-a); --c2: var(--gotchard-b); }
+.rider-card--gavv     { --c1: var(--gavv-a);     --c2: var(--gavv-b); }
+.rider-card--zeztz    { --c1: var(--zeztz-a);    --c2: var(--zeztz-b); }
+
+.rider-card__inner {
+  border-radius: 14px;
+  background: rgba(12, 10, 18, 0.82);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+/* ============ IMAGE ============ */
+.rider-card__image-wrap {
+  background:
+    linear-gradient(160deg, var(--c1) 0%, var(--c2) 140%);
+  padding: 6px;
+}
+
+.rider-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 8px;
+  image-rendering: auto;
+}
+
+.rider-card--geats .rider-card__image {
+  object-position: center 22%;
+}
+
+.rider-card--gotchard .rider-card__image {
+  object-position: center 25%;
+}
+
+.rider-card--gavv .rider-card__image {
+  object-position: center 35%;
+}
+
+.rider-card--zeztz .rider-card__image {
+  object-position: center 50%;
+}
+
+
+/* ============ TEXT ============ */
+.rider-card__name {
+  font-family: "Pusab", monospace;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  margin-top: 18px;
+  color: var(--c1);
+  text-shadow: 0 0 14px var(--c2), 0 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+.rider-card__votes {
+  margin-top: 12px;
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.rider-card__votes b { color: var(--c1); }
+
+.rider-card__pct {
+  margin-top: 4px;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ============ VOTE BUTTON ============ */
+.vote-btn {
+  margin-top: 16px;
+  font-family: "Pusab", monospace;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: #fff;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  padding: 12px 34px;
+  border: 3px solid var(--c1);
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--c2), var(--c1) 160%);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.4);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+}
+
+.vote-btn:hover { filter: brightness(1.15); }
+
+.vote-btn:active {
+  transform: translateY(4px) scale(0.97);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* ============ TOTAL ============ */
+.vote-total {
+  max-width: 900px;
+  margin: 36px auto 0;
+  text-align: center;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  padding: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.vote-total b {
+  font-family: "Pusab", monospace;
+  color: #ffd21f;
+  margin-left: 8px;
+}
+
+/* ============ BOOM PARTICLES (CSS-only) ============ */
+/* Trigger from JS: card.classList.add("boom") — remove it after ~900ms */
+
+.boom-layer {
+  position: absolute;
+  left: 50%;
+  bottom: 90px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.p {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.rider-card.boom .p {
+  animation: p-fly 0.85s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
+}
+
+/* spread directions for the 8 particles */
+.p:nth-child(1) { --tx: -110px; --ty: -120px; --rot: -220deg; animation-delay: 0s; }
+.p:nth-child(2) { --tx:  -60px; --ty: -170px; --rot:  140deg; animation-delay: 0.03s; }
+.p:nth-child(3) { --tx:    0px; --ty: -190px; --rot: -160deg; animation-delay: 0.06s; }
+.p:nth-child(4) { --tx:   60px; --ty: -170px; --rot:  200deg; animation-delay: 0.02s; }
+.p:nth-child(5) { --tx:  110px; --ty: -120px; --rot: -240deg; animation-delay: 0.05s; }
+.p:nth-child(6) { --tx:  -80px; --ty:  -70px; --rot:  180deg; animation-delay: 0.08s; }
+.p:nth-child(7) { --tx:   80px; --ty:  -70px; --rot: -180deg; animation-delay: 0.04s; }
+.p:nth-child(8) { --tx:    0px; --ty: -110px; --rot:  260deg; animation-delay: 0.07s; }
+
+@keyframes p-fly {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(0.4); opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1.1); opacity: 0; }
+}
+
+/* --- GEATS: fire burst --- */
+.p--flame {
+  width: 22px;
+  height: 34px;
+  background: linear-gradient(
+    to top,
+    #d71920 0%,
+    #ff5a1f 35%,
+    #ffb000 65%,
+    #fff2a8 100%
+  );
+
+  /*
+    Membentuk siluet api:
+    bawah lebar, tengah menyempit,
+    ujung api bercabang dan runcing.
+  */
+  clip-path: polygon(
+    50% 0%,
+    67% 22%,
+    62% 40%,
+    88% 52%,
+    71% 72%,
+    76% 100%,
+    50% 86%,
+    25% 100%,
+    30% 72%,
+    12% 52%,
+    38% 40%,
+    33% 22%
+  );
+
+  filter:
+    drop-shadow(0 0 4px #fff3b0)
+    drop-shadow(0 0 10px #ff7a1a)
+    drop-shadow(0 0 18px #e32226);
+}
+
+.p--flame:nth-child(odd) {
+  width: 17px;
+  height: 28px;
+  background: linear-gradient(
+    to top,
+    #b80f18 0%,
+    #f02a1e 32%,
+    #ff8a1f 66%,
+    #fff8cd 100%
+  );
+}
+
+/* --- GOTCHARD: Ride Chemy cards --- */
+.p--card {
+  width: 18px;
+  height: 24px;
+  border-radius: 3px;
+  background: linear-gradient(150deg, var(--gotchard-a) 0%, #0d6e9e 100%);
+  border: 2px solid #eaf7ff;
+  box-shadow: 0 0 10px rgba(79, 200, 245, 0.9), inset 0 0 6px rgba(194, 87, 26, 0.8);
+}
+.p--card:nth-child(odd) {
+  background: linear-gradient(150deg, var(--gotchard-b) 0%, #5c2a08 100%);
+  box-shadow: 0 0 10px rgba(194, 87, 26, 0.9), inset 0 0 6px rgba(79, 200, 245, 0.8);
+}
+
+/* --- GAVV: bouncing candies --- */
+.p--candy {
+  width: 18px;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gavv-a), #ff8c42);
+  border: 2px solid #fff3c4;
+  box-shadow: 0 0 10px rgba(255, 210, 31, 0.9);
+}
+.p--candy:nth-child(odd) {
+  background: linear-gradient(135deg, var(--gavv-b), #c084fc);
+  border-color: #f3e8ff;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.9);
+}
+.rider-card--gavv.boom .p--candy {
+  animation-name: p-candy-fly;
+  animation-timing-function: cubic-bezier(0.3, 0.9, 0.4, 1);
+}
+@keyframes p-candy-fly {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(0.4); opacity: 1; }
+  55%  { transform: translate(calc(var(--tx) * 0.7), var(--ty)) rotate(calc(var(--rot) * 0.6)) scale(1.1); opacity: 1; }
+  80%  { transform: translate(var(--tx), calc(var(--ty) * 0.75)) rotate(var(--rot)) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx), calc(var(--ty) * 1.05)) rotate(var(--rot)) scale(0.9); opacity: 0; }
+}
+
+/* --- ZEZTZ: lightning burst --- */
+.p--spark {
+  width: 18px;
+  height: 38px;
+
+  /*
+    Siluet petir zig-zag.
+    Bagian atas dan bawah runcing,
+    bagian tengah membentuk patahan khas kilat.
+  */
+  clip-path: polygon(
+    56% 0%,
+    100% 0%,
+    68% 38%,
+    100% 38%,
+    32% 100%,
+    43% 57%,
+    0% 57%
+  );
+
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #eafff0 20%,
+    #55e889 45%,
+    var(--zeztz-a) 72%,
+    #b91c1c 100%
+  );
+
+  filter:
+    drop-shadow(0 0 4px #ffffff)
+    drop-shadow(0 0 10px #2fae5f)
+    drop-shadow(0 0 18px var(--zeztz-a));
+}
+
+/* Variasi bentuk/warna agar partikel tidak terlihat terlalu sama */
+.p--spark:nth-child(odd) {
+  width: 13px;
+  height: 30px;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #fff5a7 22%,
+    #ffd21f 50%,
+    #ff6b35 78%,
+    var(--zeztz-a) 100%
+  );
+}
+
+/* Rotasi berbeda membuat setiap petir lebih natural */
+.p--spark:nth-child(2) { transform: rotate(18deg); }
+.p--spark:nth-child(3) { transform: rotate(-22deg); }
+.p--spark:nth-child(5) { transform: rotate(30deg); }
+.p--spark:nth-child(6) { transform: rotate(-35deg); }
+.p--spark:nth-child(7) { transform: rotate(12deg); }
+.p--spark:nth-child(8) { transform: rotate(-15deg); }
+
+.rider-card--zeztz.boom .p--spark {
+  animation-name: p-spark-fly;
+  animation-timing-function: cubic-bezier(0.1, 0.9, 0.3, 1);
+  animation-duration: 0.7s;
+}
+
+@keyframes p-spark-fly {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(0.25);
+    opacity: 1;
+  }
+
+  60% {
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1.15);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(
+      calc(var(--tx) * 1.3),
+      calc(var(--ty) * 1.3)
+    ) rotate(var(--rot)) scale(0.15);
+    opacity: 0;
+  }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 640px) {
+  .vote-grid {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+  }
+  .rider-card__image { height: 200px; }
+}
+
+
+/* ============ RESET BUTTON ============ */
+.reset-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.reset-btn {
+  font-family: "Pusab", monospace;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: #fff;
+  padding: 10px 24px;
+  background: rgba(255, 59, 48, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.reset-btn:hover {
+  background:rgba(255, 255, 255, 0.15);
+  transform: scale(1.03);
+}
+
+.reset-btn:active {
+  transform: scale(0.97);
+}

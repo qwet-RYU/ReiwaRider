@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What's Your Favorite Kamen Rider? — Mini Voting App</title>
+  <meta name="description" content="Mini voting app: vote for your favorite Kamen Rider — Geats, Gotchard, Gavv, or Zeztz. Click. Vote. See the result!" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="vote-page">
+  <header class="vote-header">
+    <h1 class="vote-title">Who's Your Favorite Kamen Rider?</h1>
+    <p class="vote-subtitle">Reiwa Generation Riders</p>
+  </header>
+
+  <main class="vote-grid">
+    
+    <!-- GEATS — JS: update #geats-votes, #geats-pct on click of #geats-btn -->
+    <article class="rider-card rider-card--geats" id="geats-card">
+      <div class="boom-layer">
+        <span class="p p--flame"></span>
+        <span class="p p--flame"></span>
+        <span class="p p--flame"></span>
+        <span class="p p--flame"></span>
+        <span class="p p--flame"></span>
+        <span class="p p--flame"></span>
+        <span class="p p--flame"></span>
+        <span class="p p--flame"></span>
+      </div>
+      <div class="rider-card__inner">
+        <div class="rider-card__image-wrap">
+          <img class="rider-card__image" src="img/geats.jpg" alt="Kamen Rider GEATS" />
+        </div>
+        <h2 class="rider-card__name">GEATS 🦊</h2>
+        <p class="rider-card__votes">Votes: <b id="geats-votes">0</b></p>
+        <p class="rider-card__pct"><span id="geats-pct">0%</span> of total</p>
+        <button class="vote-btn" id="geats-btn" type="button">VOTE</button>
+      </div>
+    </article>
+    
+    <!-- GOTCHARD — JS: update #gotchard-votes, #gotchard-pct on click of #gotchard-btn -->
+    <article class="rider-card rider-card--gotchard" id="gotchard-card">
+      <div class="boom-layer">
+        <span class="p p--card"></span>
+        <span class="p p--card"></span>
+        <span class="p p--card"></span>
+        <span class="p p--card"></span>
+        <span class="p p--card"></span>
+        <span class="p p--card"></span>
+        <span class="p p--card"></span>
+        <span class="p p--card"></span>
+      </div>
+      <div class="rider-card__inner">
+        <div class="rider-card__image-wrap">
+          <img class="rider-card__image" src="img/gotchard.png" alt="Kamen Rider GOTCHARD" />
+        </div>
+        <h2 class="rider-card__name">GOTCHARD 🎴</h2>
+        <p class="rider-card__votes">Votes: <b id="gotchard-votes">0</b></p>
+        <p class="rider-card__pct"><span id="gotchard-pct">0%</span> of total</p>
+        <button class="vote-btn" id="gotchard-btn" type="button">VOTE</button>
+      </div>
+    </article>
+    
+    <!-- GAVV — JS: update #gavv-votes, #gavv-pct on click of #gavv-btn -->
+    <article class="rider-card rider-card--gavv" id="gavv-card">
+      <div class="boom-layer">
+        <span class="p p--candy"></span>
+        <span class="p p--candy"></span>
+        <span class="p p--candy"></span>
+        <span class="p p--candy"></span>
+        <span class="p p--candy"></span>
+        <span class="p p--candy"></span>
+        <span class="p p--candy"></span>
+        <span class="p p--candy"></span>
+      </div>
+      <div class="rider-card__inner">
+        <div class="rider-card__image-wrap">
+          <img class="rider-card__image" src="img/gavv.png" alt="Kamen Rider GAVV" />
+        </div>
+        <h2 class="rider-card__name">GAVV 🍬</h2>
+        <p class="rider-card__votes">Votes: <b id="gavv-votes">0</b></p>
+        <p class="rider-card__pct"><span id="gavv-pct">0%</span> of total</p>
+        <button class="vote-btn" id="gavv-btn" type="button">VOTE</button>
+      </div>
+    </article>
+    
+    <!-- ZEZTZ — JS: update #zeztz-votes, #zeztz-pct on click of #zeztz-btn -->
+    <article class="rider-card rider-card--zeztz" id="zeztz-card">
+      <div class="boom-layer">
+        <span class="p p--spark"></span>
+        <span class="p p--spark"></span>
+        <span class="p p--spark"></span>
+        <span class="p p--spark"></span>
+        <span class="p p--spark"></span>
+        <span class="p p--spark"></span>
+        <span class="p p--spark"></span>
+        <span class="p p--spark"></span>
+      </div>
+      <div class="rider-card__inner">
+        <div class="rider-card__image-wrap">
+          <img class="rider-card__image" src="img/zeztz.png" alt="Kamen Rider ZEZTZ" />
+        </div>
+        <h2 class="rider-card__name">ZEZTZ 💪</h2>
+        <p class="rider-card__votes">Votes: <b id="zeztz-votes">0</b></p>
+        <p class="rider-card__pct"><span id="zeztz-pct">0%</span> of total</p>
+        <button class="vote-btn" id="zeztz-btn" type="button">VOTE</button>
+      </div>
+    </article>
+  </main>
+
+  <footer class="vote-total">
+    Total Votes: <b id="total-votes">0</b>
+  </footer>
+
+  <!-- TOMBOL RESET VOTING -->
+  <div class="reset-wrapper">
+    <button class="reset-btn" id="reset-btn" type="button">🔄 RESET VOTING</button>
+  </div>
+
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
