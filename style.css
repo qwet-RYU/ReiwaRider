@@ -197,7 +197,7 @@
 
 .rider-card__votes {
   margin-top: 12px;
-  font-size: 1.25rem;
+  font-size: 2rem;
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -238,7 +238,7 @@
   max-width: 900px;
   margin: 36px auto 0;
   text-align: center;
-  font-size: 1.15rem;
+  font-size: 2rem;
   letter-spacing: 1px;
   padding: 18px;
   border: 3px solid rgba(255, 255, 255, 0.5);
@@ -285,6 +285,27 @@
 .p:nth-child(6) { --tx:  -80px; --ty:  -70px; --rot:  180deg; animation-delay: 0.08s; }
 .p:nth-child(7) { --tx:   80px; --ty:  -70px; --rot: -180deg; animation-delay: 0.04s; }
 .p:nth-child(8) { --tx:    0px; --ty: -110px; --rot:  260deg; animation-delay: 0.07s; }
+/* Arah untuk extra emoji: item ke-9, 10, dan 11 */
+.p:nth-child(9) {
+  --tx: -135px;
+  --ty: -105px;
+  --rot: -300deg;
+  animation-delay: 0.04s;
+}
+
+.p:nth-child(10) {
+  --tx: 135px;
+  --ty: -105px;
+  --rot: 300deg;
+  animation-delay: 0.08s;
+}
+
+.p:nth-child(11) {
+  --tx: 0px;
+  --ty: -215px;
+  --rot: 180deg;
+  animation-delay: 0.12s;
+}
 
 @keyframes p-fly {
   0%   { transform: translate(0, 0) rotate(0deg) scale(0.4); opacity: 1; }
@@ -292,54 +313,31 @@
   100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1.1); opacity: 0; }
 }
 
-/* --- GEATS: fire burst --- */
+/* --- GEATS: emoji fire burst --- */
 .p--flame {
-  width: 22px;
-  height: 34px;
-  background: linear-gradient(
-    to top,
-    #d71920 0%,
-    #ff5a1f 35%,
-    #ffb000 65%,
-    #fff2a8 100%
-  );
-
-  /*
-    Membentuk siluet api:
-    bawah lebar, tengah menyempit,
-    ujung api bercabang dan runcing.
-  */
-  clip-path: polygon(
-    50% 0%,
-    67% 22%,
-    62% 40%,
-    88% 52%,
-    71% 72%,
-    76% 100%,
-    50% 86%,
-    25% 100%,
-    30% 72%,
-    12% 52%,
-    38% 40%,
-    33% 22%
-  );
+  width: auto;
+  height: auto;
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+  font-size: 1.9rem;
+  line-height: 1;
 
   filter:
-    drop-shadow(0 0 4px #fff3b0)
-    drop-shadow(0 0 10px #ff7a1a)
+    drop-shadow(0 0 4px #fff0a6)
+    drop-shadow(0 0 10px #ff8a00)
     drop-shadow(0 0 18px #e32226);
 }
 
+.rider-card--geats .p--flame::before {
+  content: "🔥";
+  display: block;
+}
+
 .p--flame:nth-child(odd) {
-  width: 17px;
-  height: 28px;
-  background: linear-gradient(
-    to top,
-    #b80f18 0%,
-    #f02a1e 32%,
-    #ff8a1f 66%,
-    #fff8cd 100%
-  );
+  font-size: 1.45rem;
+}
+
+.p--flame:nth-child(3n) {
+  font-size: 2.2rem;
 }
 
 /* --- GOTCHARD: Ride Chemy cards --- */
@@ -463,6 +461,45 @@
     opacity: 0;
   }
 }
+
+
+/* ============ EXTRA EMOJI PARTICLES ============ */
+/* Emoji ini hanya tambahan, bukan pengganti partikel asli. */
+
+.p--emoji {
+  width: auto;
+  height: auto;
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+  font-size: 1.55rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Gotchard: warna cyan-oranye */
+.p--emoji-card {
+  filter:
+    drop-shadow(0 0 4px #ffffff)
+    drop-shadow(0 0 10px var(--gotchard-a))
+    drop-shadow(0 0 16px var(--gotchard-b));
+}
+
+/* Gavv: warna kuning-ungu */
+.p--emoji-candy {
+  filter:
+    drop-shadow(0 0 4px #fff3c4)
+    drop-shadow(0 0 10px var(--gavv-a))
+    drop-shadow(0 0 16px var(--gavv-b));
+}
+
+/* Zeztz: warna merah-hijau */
+.p--emoji-lightning {
+  filter:
+    drop-shadow(0 0 4px #ffffff)
+    drop-shadow(0 0 10px #2fae5f)
+    drop-shadow(0 0 18px var(--zeztz-a));
+}
+
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 640px) {
